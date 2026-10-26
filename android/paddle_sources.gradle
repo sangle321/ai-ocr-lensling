@@ -1,0 +1,9 @@
+// paddle_ocr_native 0.1.1 registers its vendored .kt files as Java sources.
+// AGP 9 built-in Kotlin requires explicit Kotlin source registration. Use the
+// public variant API so this works without changing the downloaded package.
+plugins.withId('com.android.library') {
+    androidComponents.onVariants(androidComponents.selector().all()) { variant ->
+        variant.sources.kotlin.addStaticSourceDirectory(
+            file('ppocr-sdk/src/main/java').absolutePath)
+    }
+}
